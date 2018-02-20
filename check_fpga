@@ -1,0 +1,7 @@
+s=`find . -name "*_afi_id.txt" | xargs -I {} sh -c "cat {} | grep FpgaImageId | cut -d '\"' -f4"`
+for i in $s
+do
+    y=`grep -r $i --include="*_afi_id.txt"`
+        echo $y
+                aws ec2 describe-fpga-images --fpga-image-ids $i | grep Code
+                done

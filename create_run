@@ -1,0 +1,9 @@
+mkdir run
+pushd run
+
+cp ../xclbin/*.hw.*.xclbin .
+filename=`ls -1 -t | head -1`
+create_sdaccel_afi.sh -s3_bucket=timcbucket -s3_dcp_key=dcp-folder -s3_logs_key=LOGS_FILES_GO_HERE.txt -xclbin=$filename -o=xclbin
+cat *_afi_id.txt
+echo "aws ec2 describe-fpga-images --fpga-image-ids"
+popd run
